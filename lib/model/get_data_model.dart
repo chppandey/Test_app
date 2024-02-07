@@ -9,6 +9,8 @@ class GetDataModel {
   String? status;
   String? message;
 
+  String? errorMsg;
+
   GetDataModel(
       {this.vesselCnt,
       this.boatownrCnt,
@@ -18,7 +20,12 @@ class GetDataModel {
       this.geoboundaryAlertCnt,
       this.infoAlertCnt,
       this.status,
-      this.message});
+      this.message,
+      this.errorMsg});
+
+  GetDataModel.withError(String error) {
+    errorMsg = error;
+  }
 
   GetDataModel.fromJson(Map<String, dynamic> json) {
     vesselCnt = json['vesselCnt'];

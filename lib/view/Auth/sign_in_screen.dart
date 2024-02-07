@@ -1,13 +1,11 @@
-// ignore_for_file: always_specify_types
+// ignore_for_file: always_specify_types, non_constant_identifier_names
 
+import 'package:demo_app/Controller/login_controller.dart';
 import 'package:demo_app/constants/app_colors.dart';
 import 'package:demo_app/constants/styles.dart';
-import 'package:demo_app/model/login_model.dart';
-import 'package:demo_app/remote/response/api_status.dart';
-import 'package:demo_app/view/global%20widgets/custom_button_widget.dart';
 import 'package:demo_app/utils/check_device_size.dart';
 import 'package:demo_app/utils/device_size_config.dart';
-import 'package:demo_app/viewmodel/login_view_model.dart';
+import 'package:demo_app/view/global%20widgets/custom_button_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -20,7 +18,6 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   bool textIsObscure = true;
-  final _isLoading = false;
 
   final loginController = Get.put(LoginViewModel());
   final emailKey = GlobalKey<FormState>();
@@ -117,15 +114,14 @@ class _SignInScreenState extends State<SignInScreen> {
                                 AutovalidateMode.onUserInteraction,
                             child: Obx(() => TextFormField(
                                   onChanged: (value) {
-                                    loginController.setEmailValidate(value);
+                                    loginController.setUserValidate(value);
                                   },
                                   controller:
                                       loginController.emailController.value,
                                   validator: (value) {
                                     if (!loginController
-                                        .isEmail(value!)
-                                        .value) {
-                                      return "Enter valid email id";
+                                        .isUserNameValid.value) {
+                                      return "Enter valid user id it will min 5 char";
                                     } else {
                                       return null;
                                     }
@@ -160,7 +156,7 @@ class _SignInScreenState extends State<SignInScreen> {
                                         ),
                                       ),
                                     ),
-                                    hintText: 'Email Address',
+                                    hintText: 'User id',
                                   ),
                                 )),
                           ),
@@ -242,29 +238,16 @@ class _SignInScreenState extends State<SignInScreen> {
                               buttonColor: colorSecondarySeed,
                               buttonName: "SIGN IN",
                               buttonNameColor: whiteColor,
-                              onPress: loginController.isEmailValidate.value ==
+                              onPress: loginController.isUserNameValid.value ==
                                           false ||
                                       loginController
                                               .isPasswordValidate.value ==
                                           false
                                   ? null
                                   : () {
-                                      loginController.sendDataFromApi(
-                                        LoginModel(
-                                          identity: loginController
-                                              .emailController.value.text
-                                              .trim()
-                                              .toString(),
-                                          password: loginController
-                                              .passwordController.value.text
-                                              .trim()
-                                              .toString(),
-                                        ),
-                                      );
+                                      loginController.userLogin(context);
                                     },
-                              isLoading:
-                                  loginController.postResponse.value.status ==
-                                      Status.LOADING)),
+                              isLoading: loginController.isLoading.value)),
                           SizedBox(
                             height: 10.h,
                           ),

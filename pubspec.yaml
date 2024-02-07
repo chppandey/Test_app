@@ -48,6 +48,7 @@ dependencies:
   #storing data in local storage
   shared_preferences: ^2.2.2
   email_validator: ^2.1.17
+  dio: ^5.4.0
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,6 @@
-import 'package:demo_app/view/post_example_screen.dart';
+import 'package:demo_app/Controller/get_data_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'get_example_screen.dart';
 
 class BaseScreen extends StatefulWidget {
   const BaseScreen({super.key});
@@ -12,11 +10,20 @@ class BaseScreen extends StatefulWidget {
 }
 
 class _BaseScreenState extends State<BaseScreen> {
+  final getDataController = Get.put(GetDataController());
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getDataController.getData(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("MVVM Flutter Template"),
+        title: const Text("Home screen"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -24,16 +31,7 @@ class _BaseScreenState extends State<BaseScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            ElevatedButton(
-                onPressed: () {
-                  // Get.to(() => const ExampleScreen());
-                },
-                child: const Text("GET")),
-            ElevatedButton(
-                onPressed: () {
-                  // Get.to(() => const PostExampleScreen());
-                },
-                child: const Text("POST"))
+            Text(getDataController.getDataModel.value.userCnt.toString())
           ],
         ),
       ),
