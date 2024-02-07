@@ -1,9 +1,9 @@
-import 'package:demo_app/remote/model/get_data_model.dart';
+import 'package:demo_app/model/get_data_model.dart';
 
 import '../api/api_endpoints.dart';
 import '../api/api_service.dart';
 import '../api/base_api_service.dart';
-import '../model/login_model.dart';
+import '../../model/login_model.dart';
 import 'app_repository.dart';
 
 class AppRepositoryImpl implements AppRepository {

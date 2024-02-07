@@ -1,4 +1,4 @@
-import 'package:demo_app/ui/post_example_screen.dart';
+import 'package:demo_app/view/post_example_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

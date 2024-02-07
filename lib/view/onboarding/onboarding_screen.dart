@@ -1,7 +1,7 @@
 import 'package:demo_app/constants/app_colors.dart';
 import 'package:demo_app/routing/routing_config.dart';
-import 'package:demo_app/ui/onboarding/onboarding_next_button.dart';
-import 'package:demo_app/ui/onboarding/onboarding_slide.dart';
+import 'package:demo_app/view/onboarding/onboarding_next_button.dart';
+import 'package:demo_app/view/onboarding/onboarding_slide.dart';
 import 'package:demo_app/utils/device_size_config.dart';
 import 'package:demo_app/utils/local_store.dart';
 import 'package:flutter/material.dart';

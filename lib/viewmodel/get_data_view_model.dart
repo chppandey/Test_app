@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:demo_app/remote/model/get_data_model.dart';
+import 'package:demo_app/model/get_data_model.dart';
 import 'package:demo_app/remote/repository/app_repository_impl.dart';
 import 'package:get/get.dart';
 import '../remote/exceptions/app_exceptions.dart';

@@ -2,9 +2,9 @@
 
 import 'package:demo_app/constants/app_colors.dart';
 import 'package:demo_app/constants/styles.dart';
-import 'package:demo_app/remote/model/login_model.dart';
+import 'package:demo_app/model/login_model.dart';
 import 'package:demo_app/remote/response/api_status.dart';
-import 'package:demo_app/ui/global%20widgets/custom_button_widget.dart';
+import 'package:demo_app/view/global%20widgets/custom_button_widget.dart';
 import 'package:demo_app/utils/check_device_size.dart';
 import 'package:demo_app/utils/device_size_config.dart';
 import 'package:demo_app/viewmodel/login_view_model.dart';

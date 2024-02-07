@@ -1,11 +1,11 @@
 import 'dart:io';
-import 'package:demo_app/remote/model/get_data_model.dart';
+import 'package:demo_app/model/get_data_model.dart';
 import 'package:demo_app/remote/repository/app_repository_impl.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../remote/exceptions/app_exceptions.dart';
-import '../remote/model/login_model.dart';
+import '../model/login_model.dart';
 import '../remote/response/api_response.dart';
 
 class LoginViewModel extends GetxController {

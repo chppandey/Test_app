@@ -1,4 +1,4 @@
-import 'package:demo_app/remote/model/login_model.dart';
+import 'package:demo_app/model/login_model.dart';
 
 
 abstract class AppRepository {
