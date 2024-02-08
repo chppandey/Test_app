@@ -1,7 +1,6 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPref {
- 
   setUserID({required String userID}) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.setString('userId', userID);
@@ -32,10 +31,9 @@ class SharedPref {
     return prefs.getBool("isSeen");
   }
 
-  void deleteAllData() async {
+  Future<void> deleteAllData() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.remove("userId");
-    prefs.remove("userToken");
-    prefs.remove("isSeen");
+    await prefs.remove("userToken");
+    await prefs.remove("isSeen");
   }
 }

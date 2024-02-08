@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (isSeen == false) {
           Navigator.popAndPushNamed(context, onboardingScreen);
         } else {
-          Navigator.popAndPushNamed(context, baseScreen);
+          Navigator.popAndPushNamed(context, signInScreen);
         }
       },
     );

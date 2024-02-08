@@ -1,6 +1,7 @@
 // ignore_for_file: use_build_context_synchronously
 
 import 'dart:developer';
+
 import 'package:demo_app/remote/api/api_provider.dart';
 import 'package:demo_app/routing/routing_config.dart';
 import 'package:demo_app/utils/local_store.dart';
@@ -60,6 +61,7 @@ class LoginViewModel extends GetxController {
       final mData = await apiProvider.loginApiCall(reqModel);
 
       if (mData.status == 200) {
+        print("user token-->${mData.token}");
         SharedPref().setUserToken(userToken: mData.token ?? "");
         ToastWidget.successToast(
             success: mData.message ?? "Something went wrong");

@@ -2,7 +2,7 @@ import 'package:demo_app/constants/app_colors.dart';
 import 'package:demo_app/model/get_data_model.dart';
 import 'package:demo_app/remote/api/api_provider.dart';
 import 'package:demo_app/utils/toast_util.dart';
-import 'package:flutter/foundation.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -15,8 +15,8 @@ class GetDataController extends GetxController {
     try {
       isLoading(true);
       final mData = await apiProvider.getData();
-
-      if (mData.status.toString() == "200") {
+      print("getdata calling $mData");
+      if (mData.status.toString().contains('200')) {
         Get.snackbar("Success", "got data",
             backgroundColor: greenColor, colorText: whiteColor);
         getDataModel.value = mData;
@@ -29,8 +29,11 @@ class GetDataController extends GetxController {
         isLoading(false);
       }
     } catch (e) {
-      if (kDebugMode) {}
-
+      if (e is DioError) {
+        Get.snackbar("Error", e.error.toString());
+      } else {
+        // Handle other types of exceptions
+      }
       Get.snackbar("Error", e.toString());
       isLoading(false);
     }

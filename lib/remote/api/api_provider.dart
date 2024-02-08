@@ -28,7 +28,6 @@ class ApiProvider {
       }
       return LoginResponseModel.fromJson(response.data);
     } catch (error) {
-      print(error);
       return LoginResponseModel.withError(error.toString());
     }
   }
@@ -36,21 +35,34 @@ class ApiProvider {
   ///--------- getData -----///
   Future<GetDataModel> getData() async {
     Response response;
+    String? token = await SharedPref().getUserToken() ?? "";
+
+    print("data-token$token");
 
     try {
       _dio.options.headers = {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        'Authorization': '$token'
       };
-      response = await _dio.get(ApiEndPoints.getData);
+      response = await _dio.get(
+        ApiEndPoints.getData,
+        // queryParameters: {'m': true, 'user_id': 14, 'role_id': 1},
+      );
+
       if (kDebugMode) {
         log('--------Response getData : $response');
       }
-      return response.statusCode == 200 && response.data['success']
-          ? GetDataModel.fromJson(response.data)
-          : throw "Something went wrong";
+      if (response.statusCode == 200) {
+        return GetDataModel.fromJson(response.data);
+      } else {
+        throw DioError(
+          requestOptions: response.requestOptions,
+          response: response,
+        );
+      }
     } catch (error) {
-      return GetDataModel.withError(error.toString());
+      rethrow;
     }
   }
 }
